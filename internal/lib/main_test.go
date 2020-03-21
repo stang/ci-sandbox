@@ -12,7 +12,7 @@ func TestGreetings(t *testing.T) {
 	}{
 		{"World", "Hello World!"},
 		{"john", "Hello John!"},
-		{"", "Hello !"},
+		{"", "Hello Everyone!"},
 	}
 
 	for _, test := range tests {
