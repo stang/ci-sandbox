@@ -19,7 +19,7 @@ func main() {
 	case len(os.Args) == 2:
 		fmt.Println(lib.Greetings(os.Args[1]))
 	default:
-		fmt.Println(`usage: hello <name>`)
+		fmt.Printf("usage:\n  %s <name>\n  %s --version\n", os.Args[0], os.Args[0])
 	}
 
 }
