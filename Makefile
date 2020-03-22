@@ -10,8 +10,8 @@ RELEASE_PATH := $(DIST_PATH)releases/
 
 version := $(shell git describe --match "v*.*" --abbrev=7 --tags --dirty)
 build_args := -ldflags "-X main.version=${version}"
-tar_xform_arg ?= $(shell tar --version | grep -q 'GNU tar' && echo '--xform' || echo '-s')
-tar_xform_cmd ?= $(shell tar --version | grep -q 'GNU tar' && echo 's')
+tar_xform_arg := $(shell tar --version | grep -q 'GNU tar' && echo '--xform' || echo '-s')
+tar_xform_cmd := $(shell tar --version | grep -q 'GNU tar' && echo 's')
 
 all: test
 
@@ -31,7 +31,6 @@ $(RELEASE_TARGETS): $(RELEASE_PATH)%-$(version).tar.gz: $(BIN_PATH)% $(RELEASE_I
 	mkdir -p $(RELEASE_PATH)
 	tar $(tar_xform_arg) '$(tar_xform_cmd)!$(BIN_PATH)$(CMD_NAME).*!$(CMD_NAME)!' -czf $@ $^
 	cd $(RELEASE_PATH) && shasum -a 256 $(notdir $@) >$(notdir $@).sha256
-
 release: $(RELEASE_TARGETS)
 
 .PHONY: version
@@ -42,5 +41,6 @@ version:
 test:
 	go test -count=1 -race -coverprofile=coverage.txt -covermode=atomic ./...
 
+.PHONY: clean
 clean:
 	rm -rf $(DIST_PATH)
