@@ -8,16 +8,23 @@ import (
 
 func TestGreetings(t *testing.T) {
 	tests := []struct {
-		input, expected string
+		name, lang, expected string
+		err                  error
 	}{
-		{"World", "Hello World!"},
-		{"john", "Hello John!"},
-		{"", "Hello Everyone!"},
+		{"World", "en", "Hello World!", nil},
+		{"john", "en", "Hello John!", nil},
+		{"", "en", "Hello Everyone!", nil},
+		{"john", "fr", "Bonjour John!", nil},
+		{"", "fr", "Bonjour Tout Le Monde!", nil},
 	}
 
 	for _, test := range tests {
-		if res := lib.Greetings(test.input); res != test.expected {
-			t.Errorf("Greetings returned unexpected value for '%s': got '%s' instead of '%s'", test.input, res, test.expected)
+		res, err := lib.Greetings(test.lang, test.name)
+		if err != test.err {
+			t.Errorf("Greetings returned unexpected error for '%+v': '%s'", test, err)
+		}
+		if res != test.expected {
+			t.Errorf("Greetings returned unexpected value for '(%s, %s)': got '%s' instead of '%s'", test.name, test.lang, res, test.expected)
 		}
 	}
 }

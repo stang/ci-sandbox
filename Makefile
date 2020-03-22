@@ -1,5 +1,5 @@
-CMD_PATH := cmd/hello
-CMD_NAME := hello
+CMD_PATH := cmd/greet
+CMD_NAME := greet
 BUILD_TARGETS := \
 	darwin-amd64 \
 	linux-amd64
