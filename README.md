@@ -3,9 +3,21 @@
 ## Usage
 
 ```
-usage:
-    hello <name>
-    hello --version
+A simple tool to give a sign of welcome when meeting someone
+
+Usage:
+  greet [name] [flags]
+  greet [command]
+
+Available Commands:
+  help        Help about any command
+  version     Print the version number
+
+Flags:
+  -h, --help          help for greet
+  -l, --lang string   Language to use for the greeting (default "en")
+
+Use "greet [command] --help" for more information about a command.
 ```
 
 ## Developer's HOW TO
