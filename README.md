@@ -11,6 +11,9 @@ usage:
 ## Development
 
 ```
-# run tests and build in bin/
-make
+# run tests
+make test
+
+# prepare release artifacts
+make release
 ```
