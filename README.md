@@ -8,9 +8,17 @@ usage:
     hello --version
 ```
 
-## Development
+## Developer's HOW TO
 
 ```
-# run tests and build in bin/
-make
+# run tests
+make test
+
+# prepare release artifacts
+make release
+
+# github release
+RELEASE=v0.2.0
+git tag "${RELEASE}"
+git push origin "${RELEASE}"
 ```
